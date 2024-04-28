@@ -1,4 +1,4 @@
-import { BUTTON_BLUE, WHITE } from "../constants";
+import { BUTTON_BLUE, BUTTON_GREEN, WHITE } from "../constants";
 import { StyleSheet } from "react-native";
 
 export const buttonStyles = StyleSheet.create({
@@ -19,10 +19,12 @@ export const buttonStyles = StyleSheet.create({
     paddingBottom: 5,
   },
   solidButton: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: BUTTON_BLUE,
+    padding: 10,
     borderRadius: 10,
+    backgroundColor: BUTTON_BLUE,
+  },
+  solidGreenButton: {
+    backgroundColor: BUTTON_GREEN,
   },
   solidButtonText: {
     fontSize: 16,

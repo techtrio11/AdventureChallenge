@@ -29,6 +29,11 @@ const ChooseLocation = ({ navigation }: Props) => {
           <SolidButton
             buttonText="Backyard"
             onPress={() => navigation.navigate("Backyard")}
+            pressableColor={buttonStyles.solidGreenButton}
+          />
+          <SolidButton
+            buttonText="Local Park"
+            onPress={() => navigation.navigate("LocalPark")}
           />
         </View>
       </>

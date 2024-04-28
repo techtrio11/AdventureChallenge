@@ -4,13 +4,27 @@ import { buttonStyles } from "../styles";
 type SolidButtonProps = {
   buttonText: string;
   onPress: () => void;
-  variant?: string;
+  pressableColor?: {};
+  textColor?: {};
 };
-export const SolidButton = ({ buttonText, onPress }: SolidButtonProps) => {
-  //CGU: return solid button
+export const SolidButton = ({
+  buttonText,
+  onPress,
+  pressableColor = {},
+  textColor = {},
+}: SolidButtonProps) => {
   return (
-    <Pressable style={buttonStyles.solidButton} onPress={onPress}>
-      <Text style={buttonStyles.solidButtonText}>{buttonText}</Text>
+    <Pressable
+      style={[
+        buttonStyles.buttonContainer,
+        buttonStyles.solidButton,
+        pressableColor,
+      ]}
+      onPress={onPress}
+    >
+      <Text style={[buttonStyles.solidButtonText, textColor]}>
+        {buttonText}
+      </Text>
     </Pressable>
   );
 };
@@ -20,23 +34,29 @@ type OutlineButtonProps = {
   navigation: any;
   pageName: string;
   params: {};
+  pressableColor?: {};
+  textColor?: {};
 };
 export const OutlineButton = ({
   buttonText,
   navigation,
   pageName,
   params,
+  pressableColor = {},
+  textColor = {},
 }: OutlineButtonProps) => {
   //CGU: return outline button
   return (
     <View style={buttonStyles.buttonWrapper}>
       <Pressable
-        style={buttonStyles.outlineButton}
+        style={[buttonStyles.outlineButton, pressableColor]}
         onPress={() => {
           navigation.navigate(pageName, params);
         }}
       >
-        <Text style={buttonStyles.outlineButtonText}>{buttonText}</Text>
+        <Text style={[buttonStyles.outlineButtonText, textColor]}>
+          {buttonText}
+        </Text>
       </Pressable>
     </View>
   );
@@ -46,11 +66,16 @@ type TextButtonProps = {
   buttonText: string;
   onPress: () => void;
   variant?: string;
+  textColor?: {};
 };
-export const TextButton = ({ buttonText, onPress }: TextButtonProps) => {
+export const TextButton = ({
+  buttonText,
+  onPress,
+  textColor = {},
+}: TextButtonProps) => {
   return (
     <Pressable style={buttonStyles.textButton} onPress={onPress}>
-      <Text style={buttonStyles.textButtonText}>{buttonText}</Text>
+      <Text style={[buttonStyles.textButtonText, textColor]}>{buttonText}</Text>
     </Pressable>
   );
 };

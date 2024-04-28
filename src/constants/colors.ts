@@ -5,5 +5,6 @@ export const GREEN = "#3c794b";
 export const BORDER_COLOR = "#00000";
 export const GRAY = "gray";
 export const BUTTON_BLUE = "#1E2762";
+export const BUTTON_GREEN = "#3c794b";
 export const BLACK = "black";
 export const WHITE = "white";
