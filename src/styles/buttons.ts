@@ -21,15 +21,22 @@ export const buttonStyles = StyleSheet.create({
   solidButton: {
     padding: 10,
     borderRadius: 10,
-    backgroundColor: BUTTON_BLUE,
+    borderColor: "black",
+    borderWidth: 4,
   },
   solidGreenButton: {
-    backgroundColor: BUTTON_GREEN,
+    backgroundColor: "#6aa84fff",
+  },
+  solidYellowButton: {
+    backgroundColor: "#ffd966ff",
+  },
+  solidBlueButton: {
+    backgroundColor: "#a4c2f4ff",
   },
   solidButtonText: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: WHITE,
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "black",
     textAlign: "center",
   },
   outlineButton: {

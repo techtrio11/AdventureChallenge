@@ -14,7 +14,10 @@ const ChooseLocation = ({ navigation }: Props) => {
           source={require("../assets/KPD_logo.jpg")}
           style={styles.image}
         /> */}
-        <Text>Choose location for challenge:</Text>
+        <Text style={{ fontSize: 22 }}>ADVENTURE CHALLENGE</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>
+          Choose location for challenge:
+        </Text>
         <View
           style={[
             buttonStyles.buttonContainer,
@@ -34,6 +37,22 @@ const ChooseLocation = ({ navigation }: Props) => {
           <SolidButton
             buttonText="Local Park"
             onPress={() => navigation.navigate("LocalPark")}
+            pressableColor={buttonStyles.solidYellowButton}
+          />
+          <SolidButton
+            buttonText="Forest"
+            onPress={() => navigation.navigate("Forest")}
+            pressableColor={buttonStyles.solidGreenButton}
+          />
+          <SolidButton
+            buttonText="Water"
+            onPress={() => navigation.navigate("Water")}
+            pressableColor={buttonStyles.solidYellowButton}
+          />
+          <SolidButton
+            buttonText="Learn"
+            onPress={() => navigation.navigate("Learn")}
+            pressableColor={buttonStyles.solidBlueButton}
           />
         </View>
       </>
