@@ -2,11 +2,27 @@ import { Text, Pressable, View } from "react-native";
 import { buttonStyles } from "../styles";
 
 type SolidButtonProps = {
+  /**
+   * Text to display on the button.
+   */
   buttonText: string;
+  /**
+   * Function to be called when the button is pressed.
+   */
   onPress: () => void;
+  /**
+   * Color style for the button when pressed.
+   */
   pressableColor?: {};
+  /**
+   * Color style for the text displayed on the button.
+   */
   textColor?: {};
 };
+
+/**
+ * SolidButton component displays a button with solid background and customizable text color.
+ */
 export const SolidButton = ({
   buttonText,
   onPress,
@@ -30,13 +46,34 @@ export const SolidButton = ({
 };
 
 type OutlineButtonProps = {
+  /**
+   * Text to display on the button.
+   */
   buttonText: string;
+  /**
+   * Navigation object for navigating to another screen.
+   */
   navigation: any;
+  /**
+   * Name of the destination screen.
+   */
   pageName: string;
-  params: {};
+  /**
+   * Parameters to pass to the destination screen.
+   */
+  params: any;
+  /**
+   * Color style for the button when pressed.
+   */
   pressableColor?: {};
+  /**
+   * Color style for the text displayed on the button.
+   */
   textColor?: {};
 };
+/**
+ * OutlineButton component displays a button with outlined border and customizable text color.
+ */
 export const OutlineButton = ({
   buttonText,
   navigation,
@@ -63,11 +100,26 @@ export const OutlineButton = ({
 };
 
 type TextButtonProps = {
+  /**
+   * Text to display on the button.
+   */
   buttonText: string;
+  /**
+   * Function to be called when the button is pressed.
+   */
   onPress: () => void;
+  /**
+   * Optional variant to specify button style.
+   */
   variant?: string;
+  /**
+   * Color style for the text displayed on the button.
+   */
   textColor?: {};
 };
+/**
+ * TextButton component displays a button with customizable text color.
+ */
 export const TextButton = ({
   buttonText,
   onPress,
