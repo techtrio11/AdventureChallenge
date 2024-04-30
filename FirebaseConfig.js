@@ -14,5 +14,4 @@ export const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 export const db = getFirestore();
-// export const bigGoalReference = collection(db, "BigGoal");
-// export const smallGoalReference = collection(db, "SmallGoal");
+export const challengesReference = collection(db, "Challenges");
