@@ -46,4 +46,12 @@ export const globalStyles = StyleSheet.create({
     maxHeight: 20,
   },
   indicatorValue: { paddingLeft: 4, textAlign: "left" },
+  acHeader: {
+    fontSize: 22,
+  },
+  mainHeader: {
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+  underline: { textDecorationLine: "underline" },
 });

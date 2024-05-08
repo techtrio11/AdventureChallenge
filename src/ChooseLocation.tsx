@@ -1,6 +1,6 @@
 import { View, Image, StyleSheet, Text } from "react-native";
 import { ContainerCenter, SolidButton } from "./components";
-import { buttonStyles } from "./styles";
+import { buttonStyles, globalStyles } from "./styles";
 
 type Props = {
   navigation: any;
@@ -14,8 +14,8 @@ const ChooseLocation = ({ navigation }: Props) => {
           source={require("../assets/KPD_logo.jpg")}
           style={styles.image}
         /> */}
-        <Text style={{ fontSize: 22 }}>ADVENTURE CHALLENGE</Text>
-        <Text style={{ fontWeight: "bold", fontSize: 24 }}>
+        <Text style={globalStyles.acHeader}>ADVENTURE CHALLENGE</Text>
+        <Text style={globalStyles.mainHeader}>
           Choose location for challenge:
         </Text>
         <View

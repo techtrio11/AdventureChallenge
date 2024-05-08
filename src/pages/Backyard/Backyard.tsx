@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ChallengesData } from "../../types";
 import { query, onSnapshot, collection, where } from "firebase/firestore";
 import { getRandomChallenges } from "../../utils";
-import { buttonStyles } from "../../styles";
+import { buttonStyles, globalStyles } from "../../styles";
 
 type Props = {
   navigation: any;
@@ -61,7 +61,8 @@ const Backyard = ({ navigation }: Props) => {
         <>Loading data ...</>
       ) : (
         <>
-          <Text>Backyard Page</Text>
+          <Text style={globalStyles.acHeader}>ADVENTURE CHALLENGE</Text>
+          <Text style={globalStyles.mainHeader}>In your backyard:</Text>
           {selectedOptions.map((option, index) => {
             const isFirstButton = index === 0;
             const buttonColor = isFirstButton
@@ -79,12 +80,15 @@ const Backyard = ({ navigation }: Props) => {
                     pressableColor={buttonColor}
                   />
                 </Text>
-                {isFirstButton && <Text>OR</Text>}
+                {isFirstButton && (
+                  <Text style={globalStyles.mainHeader}>OR</Text>
+                )}
               </>
             );
           })}
 
           <TextButton
+            //style={globalStyles.underline}
             buttonText="Pick Again"
             onPress={() => {
               setSelectedOptions((prevOptions) =>
