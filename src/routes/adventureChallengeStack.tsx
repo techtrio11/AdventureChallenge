@@ -5,6 +5,7 @@ import LocalPark from "../pages/LocalPark/LocalPark";
 import Forest from "../pages/Forest/Forest";
 import Water from "../pages/Water/Water";
 import Learn from "../pages/Learn/Learn";
+import BackyardChallenge from "../pages/Backyard/BackyardChallenge";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,11 @@ const AdventureChallengeStack = () => {
       <Stack.Screen
         name="Backyard"
         component={Backyard}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="BackyardChallenge"
+        component={BackyardChallenge}
         options={{ headerShown: false }}
       />
       <Stack.Screen

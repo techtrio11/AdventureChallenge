@@ -51,7 +51,7 @@ const Forest = ({ navigation }: Props) => {
 
   //get initial challenges
   useEffect(() => {
-    //TODO: pass in user completed data
+    //TO DO: pass in user completed data
     setSelectedOptions(getRandomChallenges(challengeData));
   }, [challengeData]);
 

@@ -3,7 +3,7 @@ import { ContainerCenter, SolidButton, TextButton } from "../../components";
 import { challengesReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
 import { ChallengesData } from "../../types";
-import { query, onSnapshot, collection, where } from "firebase/firestore";
+import { query, onSnapshot, where } from "firebase/firestore";
 import { getRandomChallenges } from "../../utils";
 import { buttonStyles, globalStyles } from "../../styles";
 
@@ -51,7 +51,7 @@ const Backyard = ({ navigation }: Props) => {
 
   //get initial challenges
   useEffect(() => {
-    //TODO: pass in user completed data
+    //TO DO: pass in user completed data
     setSelectedOptions(getRandomChallenges(challengeData));
   }, [challengeData]);
 
@@ -73,8 +73,11 @@ const Backyard = ({ navigation }: Props) => {
                 <SolidButton
                   buttonText={option.name}
                   onPress={() => {
-                    //TO DO: pass in record to next page where they will see the description
-                    console.log(option);
+                    navigation.navigate("BackyardChallenge", {
+                      challengeId: option.id,
+                      challengeName: option.name,
+                      challengeDescription: option.description,
+                    });
                   }}
                   pressableColor={buttonColor}
                 />
