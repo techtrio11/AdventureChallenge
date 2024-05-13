@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { Text, View } from "react-native";
 import { ContainerCenter, SolidButton, TextButton } from "../../components";
 import { challengesReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
@@ -69,26 +69,27 @@ const Forest = ({ navigation }: Props) => {
               ? buttonStyles.solidGreenButton
               : buttonStyles.solidYellowButton;
             return (
-              <>
-                <Text key={`forest_${index}`}>
-                  <SolidButton
-                    buttonText={option.name}
-                    onPress={() => {
-                      //TO DO: pass in record to next page where they will see the description
-                      console.log(option);
-                    }}
-                    pressableColor={buttonColor}
-                  />
-                </Text>
-                {isFirstButton && (
-                  <Text style={globalStyles.mainHeader}>OR</Text>
+              <View key={`forest_${index}`}>
+                <SolidButton
+                  buttonText={option.name}
+                  onPress={() => {
+                    //TO DO: pass in record to next page where they will see the description
+                    console.log(option);
+                  }}
+                  pressableColor={buttonColor}
+                />
+                {isFirstButton && selectedOptions.length == 2 && (
+                  <Text
+                    key={`forest_OR_${index}`}
+                    style={globalStyles.mainHeader}
+                  >
+                    OR
+                  </Text>
                 )}
-              </>
+              </View>
             );
           })}
-
           <TextButton
-            //style={globalStyles.underline}
             buttonText="Pick Again"
             onPress={() => {
               setSelectedOptions((prevOptions) =>

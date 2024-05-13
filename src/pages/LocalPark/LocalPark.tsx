@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { View, Text } from "react-native";
 import { ContainerCenter, SolidButton, TextButton } from "../../components";
 import { challengesReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
@@ -69,26 +69,22 @@ const LocalPark = ({ navigation }: Props) => {
               ? buttonStyles.solidGreenButton
               : buttonStyles.solidYellowButton;
             return (
-              <>
-                <Text key={`LocalPark_${index}`}>
-                  <SolidButton
-                    buttonText={option.name}
-                    onPress={() => {
-                      //TO DO: pass in record to next page where they will see the description
-                      console.log(option);
-                    }}
-                    pressableColor={buttonColor}
-                  />
-                </Text>
-                {isFirstButton && (
+              <View key={`LocalPark_${index}`}>
+                <SolidButton
+                  buttonText={option.name}
+                  onPress={() => {
+                    //TO DO: pass in record to next page where they will see the description
+                    console.log(option);
+                  }}
+                  pressableColor={buttonColor}
+                />
+                {isFirstButton && selectedOptions.length == 2 && (
                   <Text style={globalStyles.mainHeader}>OR</Text>
                 )}
-              </>
+              </View>
             );
           })}
-
           <TextButton
-            //style={globalStyles.underline}
             buttonText="Pick Again"
             onPress={() => {
               setSelectedOptions((prevOptions) =>

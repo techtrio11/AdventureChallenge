@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { Text, View } from "react-native";
 import { ContainerCenter, SolidButton, TextButton } from "../../components";
 import { challengesReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
@@ -69,26 +69,23 @@ const Backyard = ({ navigation }: Props) => {
               ? buttonStyles.solidGreenButton
               : buttonStyles.solidYellowButton;
             return (
-              <>
-                <Text key={`backyard_${index}`}>
-                  <SolidButton
-                    buttonText={option.name}
-                    onPress={() => {
-                      //TO DO: pass in record to next page where they will see the description
-                      console.log(option);
-                    }}
-                    pressableColor={buttonColor}
-                  />
-                </Text>
-                {isFirstButton && (
+              <View key={`backyard_${index}`}>
+                <SolidButton
+                  buttonText={option.name}
+                  onPress={() => {
+                    //TO DO: pass in record to next page where they will see the description
+                    console.log(option);
+                  }}
+                  pressableColor={buttonColor}
+                />
+                {isFirstButton && selectedOptions.length == 2 && (
                   <Text style={globalStyles.mainHeader}>OR</Text>
                 )}
-              </>
+              </View>
             );
           })}
-
+          {/* TO DO: hide if challengeData.length < 3 */}
           <TextButton
-            //style={globalStyles.underline}
             buttonText="Pick Again"
             onPress={() => {
               setSelectedOptions((prevOptions) =>
@@ -96,6 +93,8 @@ const Backyard = ({ navigation }: Props) => {
               );
             }}
           />
+          {/* TO DO: What to do if challengeData is empty? */}
+          {/* TO DO: How does a user choose a different challenge location? */}
         </>
       )}
     </ContainerCenter>
@@ -103,5 +102,3 @@ const Backyard = ({ navigation }: Props) => {
 };
 
 export default Backyard;
-
-const styles = StyleSheet.create({});
