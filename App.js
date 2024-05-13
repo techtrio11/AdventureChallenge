@@ -1,34 +1,22 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-//TypeScript for all Stack Routes
-import { RootStackParams } from "./src/types";
-
-//Stack Navigation Screens
-import ChooseLocation from "./src/routes/chooseLocationStack";
+//Stack AdventureChallenge Screens
+import AdventureChallenge from "./src/routes/adventureChallengeStack";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="ChooseLocation">
+      <Drawer.Navigator initialRouteName="AdventureChallenge">
         <Drawer.Screen
-          name="ChooseLocation"
-          component={ChooseLocation}
+          name="AdventureChallenge"
+          component={AdventureChallenge}
           options={{
-            drawerLabel: "Choose Location",
-            title: "Choose Location",
+            headerShown: false,
           }}
         />
-        {/* <Drawer.Screen
-          name="OfficerPortal"
-          component={OfficerPortalStack}
-          options={{
-            drawerLabel: "Vehicle List",
-            title: "Vehicle List",
-          }}
-        /> */}
       </Drawer.Navigator>
     </NavigationContainer>
   );

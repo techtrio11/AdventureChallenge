@@ -103,5 +103,3 @@ const Forest = ({ navigation }: Props) => {
 };
 
 export default Forest;
-
-const styles = StyleSheet.create({});

@@ -14,5 +14,3 @@ const Learn = ({ navigation }: Props) => {
 };
 
 export default Learn;
-
-const styles = StyleSheet.create({});

@@ -102,5 +102,3 @@ const Water = ({ navigation }: Props) => {
   );
 };
 export default Water;
-
-const styles = StyleSheet.create({});

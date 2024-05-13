@@ -10,10 +10,6 @@ const ChooseLocation = ({ navigation }: Props) => {
   return (
     <ContainerCenter>
       <>
-        {/* <Image
-          source={require("../assets/KPD_logo.jpg")}
-          style={styles.image}
-        /> */}
         <Text style={globalStyles.acHeader}>ADVENTURE CHALLENGE</Text>
         <Text style={globalStyles.mainHeader}>
           Choose location for challenge:
@@ -61,11 +57,3 @@ const ChooseLocation = ({ navigation }: Props) => {
 };
 
 export default ChooseLocation;
-
-const styles = StyleSheet.create({
-  image: {
-    width: 300,
-    height: 300,
-    resizeMode: "contain", // You can use 'cover', 'contain', 'stretch', etc.
-  },
-});

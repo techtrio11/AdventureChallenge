@@ -103,5 +103,3 @@ const LocalPark = ({ navigation }: Props) => {
 };
 
 export default LocalPark;
-
-const styles = StyleSheet.create({});
