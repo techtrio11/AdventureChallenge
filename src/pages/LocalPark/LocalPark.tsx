@@ -21,7 +21,7 @@ const LocalPark = ({ navigation }: Props) => {
     const fetchData = async () => {
       const challengesQuery = query(
         challengesReference,
-        where("Location", "==", "LocalPark")
+        where("Location", "==", "Local Park")
       );
 
       const unsubscribe = onSnapshot(challengesQuery, (querySnapshot) => {
