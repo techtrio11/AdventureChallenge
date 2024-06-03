@@ -88,14 +88,16 @@ const Backyard = ({ navigation }: Props) => {
             );
           })}
           {/* TO DO: hide if challengeData.length < 3 */}
-          <TextButton
-            buttonText="Pick Again"
-            onPress={() => {
-              setSelectedOptions((prevOptions) =>
-                getRandomChallenges(challengeData, prevOptions)
-              );
-            }}
-          />
+          {selectedOptions.length > 2 && (
+            <TextButton
+              buttonText="Pick Again"
+              onPress={() => {
+                setSelectedOptions((prevOptions) =>
+                  getRandomChallenges(challengeData, prevOptions)
+                );
+              }}
+            />
+          )}
           {/* TO DO: What to do if challengeData is empty? */}
           {/* TO DO: How does a user choose a different challenge location? */}
         </>
