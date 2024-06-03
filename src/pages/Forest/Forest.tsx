@@ -73,8 +73,11 @@ const Forest = ({ navigation }: Props) => {
                 <SolidButton
                   buttonText={option.name}
                   onPress={() => {
-                    //TO DO: pass in record to next page where they will see the description
-                    console.log(option);
+                    navigation.navigate("ForestChallenge", {
+                      challengeId: option.id,
+                      challengeName: option.name,
+                      challengeDescription: option.description,
+                    });
                   }}
                   pressableColor={buttonColor}
                 />

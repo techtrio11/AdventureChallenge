@@ -6,6 +6,9 @@ import Forest from "../pages/Forest/Forest";
 import Water from "../pages/Water/Water";
 import Learn from "../pages/Learn/Learn";
 import BackyardChallenge from "../pages/Backyard/BackyardChallenge";
+import LocalParkChallenge from "../pages/LocalPark/LocalParkChallenge";
+import ForestChallenge from "../pages/Forest/ForestChallenge";
+import WaterChallenge from "../pages/Water/WaterChallenge";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,13 +36,28 @@ const AdventureChallengeStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="LocalParkChallenge"
+        component={LocalParkChallenge}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Forest"
         component={Forest}
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="ForestChallenge"
+        component={ForestChallenge}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Water"
         component={Water}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="WaterChallenge"
+        component={WaterChallenge}
         options={{ headerShown: false }}
       />
       <Stack.Screen
