@@ -87,7 +87,6 @@ const Backyard = ({ navigation }: Props) => {
               </View>
             );
           })}
-          {/* TO DO: hide if challengeData.length < 3 */}
           {selectedOptions.length > 2 && (
             <TextButton
               buttonText="Pick Again"
