@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Text } from "react-native";
 import { ContainerCenter, SolidButton } from "./components";
 import { buttonStyles, globalStyles } from "./styles";
 

@@ -1,8 +1,7 @@
-// Import the functions you need from the SDKs you need
-
-// Your web app's Firebase configuration
 import { initializeApp } from "firebase/app";
 import { collection, getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 export const firebaseConfig = {
   apiKey: "AIzaSyA410rxffNkXZj_phTLEXVGkompWOZM-_E",
   authDomain: "adventurechallenge-5910c.firebaseapp.com",
@@ -15,3 +14,4 @@ export const firebaseConfig = {
 initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const challengesReference = collection(db, "Challenges");
+export const storage = getStorage();

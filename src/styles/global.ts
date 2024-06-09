@@ -54,4 +54,8 @@ export const globalStyles = StyleSheet.create({
     fontSize: 24,
   },
   underline: { textDecorationLine: "underline" },
+  image: {
+    width: 200,
+    height: 200,
+  },
 });
