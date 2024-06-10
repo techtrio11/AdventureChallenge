@@ -4,7 +4,7 @@ import { challengesReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
 import { ChallengesData } from "../../types";
 import { query, onSnapshot, collection, where } from "firebase/firestore";
-import { getRandomChallenges } from "../../utils";
+import { availableChallenges, getRandomChallenges } from "../../utils";
 import { buttonStyles, globalStyles } from "../../styles";
 
 type Props = {
@@ -15,6 +15,9 @@ const Forest = ({ navigation }: Props) => {
   const [challengeData, setChallengesData] = useState<ChallengesData[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<ChallengesData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [availableChallengeData, setAvailableChallengesData] = useState<
+    ChallengesData[]
+  >([]);
 
   //get challenges from database
   useEffect(() => {
@@ -53,6 +56,7 @@ const Forest = ({ navigation }: Props) => {
   useEffect(() => {
     //TO DO: pass in user completed data
     setSelectedOptions(getRandomChallenges(challengeData));
+    setAvailableChallengesData(availableChallenges(challengeData));
   }, [challengeData]);
 
   return (
@@ -92,14 +96,16 @@ const Forest = ({ navigation }: Props) => {
               </View>
             );
           })}
-          <TextButton
-            buttonText="Pick Again"
-            onPress={() => {
-              setSelectedOptions((prevOptions) =>
-                getRandomChallenges(challengeData, prevOptions)
-              );
-            }}
-          />
+          {availableChallengeData.length > 2 && (
+            <TextButton
+              buttonText="Pick Again"
+              onPress={() => {
+                setSelectedOptions((prevOptions) =>
+                  getRandomChallenges(challengeData, prevOptions)
+                );
+              }}
+            />
+          )}
         </>
       )}
     </ContainerCenter>
