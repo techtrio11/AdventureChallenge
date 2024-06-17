@@ -2,18 +2,13 @@ import { ChallengesData } from "../types";
 
 export const getRandomChallenges = (
   challengeData: ChallengesData[],
-  completedChallenges: ChallengesData[] = [],
   excludeChallenges: ChallengesData[] = [],
   maxChallenges: number = 2
 ): ChallengesData[] => {
-  //filter out the challenges the user has already completed
-  let availableChallenges = challengeData.filter(
-    (challenge) =>
-      !completedChallenges.some((excluded) => excluded.id === challenge.id)
-  );
-  //if there are more then 3 challenges then filter out the challenges already offered to the user
-  if (challengeData.length > 3 && excludeChallenges.length === 0) {
-    excludeChallenges = challengeData.filter(
+  let availableChallenges = challengeData;
+  // //if there are more then 3 challenges then filter out the challenges already offered to the user
+  if (challengeData.length > 3) {
+    availableChallenges = challengeData.filter(
       (challenge) =>
         !excludeChallenges.some((excluded) => excluded.id === challenge.id)
     );
@@ -34,4 +29,15 @@ export const getRandomChallenges = (
   }
 
   return randomChallenges;
+};
+
+export const getFilteredChallengeData = (
+  challengeData: ChallengesData[],
+  completedChallenges: ChallengesData[] = []
+) => {
+  if (!completedChallenges.length) return challengeData;
+  return challengeData.filter(
+    (challenge) =>
+      !completedChallenges.some((completed) => completed.id === challenge.id)
+  );
 };

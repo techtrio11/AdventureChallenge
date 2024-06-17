@@ -1,17 +1,25 @@
 import { Text, View } from "react-native";
 import { ContainerCenter, SolidButton, TextButton } from "../../components";
-import { challengesReference } from "../../../FirebaseConfig";
+import { challengesReference, usersReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
 import { ChallengesData } from "../../types";
 import { query, onSnapshot, where } from "firebase/firestore";
-import { getRandomChallenges } from "../../utils";
+import { getFilteredChallengeData, getRandomChallenges } from "../../utils";
 import { buttonStyles, globalStyles } from "../../styles";
 
 type Props = {
   navigation: any;
+  route: any;
 };
 
-const Backyard = ({ navigation }: Props) => {
+const Backyard = ({ navigation, route }: Props) => {
+  const { userId } = route.params;
+  const [userCompletedChallenges, setUserCompletedChallenges] = useState<
+    ChallengesData[]
+  >([]);
+  const [userChallengesAvailable, setUserChallengesAvailable] = useState<
+    ChallengesData[]
+  >([]);
   const [challengeData, setChallengesData] = useState<ChallengesData[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<ChallengesData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,15 +57,51 @@ const Backyard = ({ navigation }: Props) => {
     };
   }, []);
 
+  //get completed challenges from database
+  useEffect(() => {
+    const fetchData = async () => {
+      const usersQuery = query(usersReference);
+      const completedChallenges = onSnapshot(usersQuery, (querySnapshot) => {
+        const list = [];
+        querySnapshot.forEach((doc) => {
+          if (doc.id === userId) {
+            const data = doc.data();
+            data.activities_completed.forEach((activity) => {
+              list.push({
+                id: activity.activity_id,
+              });
+            });
+          }
+        });
+        if (list.length) setUserCompletedChallenges(list);
+        setIsLoading(false);
+      });
+
+      return completedChallenges;
+    };
+    fetchData();
+
+    // Cleanup function
+    return () => {
+      // Perform any cleanup here if needed
+    };
+  }, [userId]);
+
+  //get all the user challenges available, filtering out completed challenges
+  useEffect(() => {
+    setUserChallengesAvailable(
+      getFilteredChallengeData(challengeData, userCompletedChallenges)
+    );
+  }, [challengeData, userCompletedChallenges]);
+
   //get initial challenges
   useEffect(() => {
-    //TO DO: pass in user completed data
-    setSelectedOptions(getRandomChallenges(challengeData));
-  }, [challengeData]);
+    setSelectedOptions(getRandomChallenges(userChallengesAvailable));
+  }, [userChallengesAvailable]);
 
   return (
     <ContainerCenter>
-      {isLoading ? (
+      {isLoading && selectedOptions.length ? (
         <>Loading data ...</>
       ) : (
         <>
@@ -87,12 +131,12 @@ const Backyard = ({ navigation }: Props) => {
               </View>
             );
           })}
-          {selectedOptions.length > 2 && (
+          {userChallengesAvailable.length > 2 && (
             <TextButton
               buttonText="Pick Again"
               onPress={() => {
                 setSelectedOptions((prevOptions) =>
-                  getRandomChallenges(challengeData, prevOptions)
+                  getRandomChallenges(userChallengesAvailable, prevOptions)
                 );
               }}
             />
