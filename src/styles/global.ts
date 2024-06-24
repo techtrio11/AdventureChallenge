@@ -52,6 +52,7 @@ export const globalStyles = StyleSheet.create({
   mainHeader: {
     fontWeight: "bold",
     fontSize: 24,
+    textAlign: "center",
   },
   underline: { textDecorationLine: "underline" },
   image: {
