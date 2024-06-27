@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ChooseLocation from "../ChooseLocation";
+import ChooseLocation from "../pages/ChooseLocation";
 import Backyard from "../pages/Backyard/Backyard";
 import LocalPark from "../pages/LocalPark/LocalPark";
 import Forest from "../pages/Forest/Forest";
@@ -10,12 +10,18 @@ import BackyardChallenge from "../pages/Backyard/BackyardChallenge";
 import LocalParkChallenge from "../pages/LocalPark/LocalParkChallenge";
 import ForestChallenge from "../pages/Forest/ForestChallenge";
 import WaterChallenge from "../pages/Water/WaterChallenge";
+import Home from "../Home";
 
 const Stack = createNativeStackNavigator();
 
 const AdventureChallengeStack = () => {
   return (
-    <Stack.Navigator initialRouteName="ChooseLocation">
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="ChooseLocation"
         component={ChooseLocation}

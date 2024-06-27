@@ -6,11 +6,11 @@ type Props = {
   route: any;
 };
 const Social = ({ navigation, route }: Props) => {
-  const { userId } = route.params;
+  const { userId, userName } = route.params;
   return (
     <ContainerCenter>
       <>
-        {userId}
+        {userName}
         <Text>small user profile with streak</Text>
         <Text>list of all user completed activity with image/date/user</Text>
         <SolidButton

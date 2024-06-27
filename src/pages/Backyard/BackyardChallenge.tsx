@@ -13,7 +13,7 @@ type Props = {
 };
 
 const BackyardChallenge = ({ navigation, route }: Props) => {
-  const { challengeId, challengeName, challengeDescription, userId } =
+  const { challengeId, challengeName, challengeDescription, userId, userName } =
     route.params;
   const [image, setImage] = useState(null);
 
@@ -46,6 +46,7 @@ const BackyardChallenge = ({ navigation, route }: Props) => {
           setImage(null);
           navigation.navigate("Social", {
             userId: userId,
+            userName: userName,
           });
         })
         .catch((e) => console.log(e));
