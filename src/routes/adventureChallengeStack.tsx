@@ -5,6 +5,7 @@ import LocalPark from "../pages/LocalPark/LocalPark";
 import Forest from "../pages/Forest/Forest";
 import Water from "../pages/Water/Water";
 import Learn from "../pages/Learn/Learn";
+import Social from "../pages/Social";
 import BackyardChallenge from "../pages/Backyard/BackyardChallenge";
 import LocalParkChallenge from "../pages/LocalPark/LocalParkChallenge";
 import ForestChallenge from "../pages/Forest/ForestChallenge";
@@ -63,6 +64,11 @@ const AdventureChallengeStack = () => {
       <Stack.Screen
         name="Learn"
         component={Learn}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Social"
+        component={Social}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

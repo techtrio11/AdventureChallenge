@@ -27,9 +27,6 @@ const Backyard = ({ navigation, route }: Props) => {
   const [challengeData, setChallengesData] = useState<ChallengesData[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<ChallengesData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [availableChallengeData, setAvailableChallengesData] = useState<
-    ChallengesData[]
-  >([]);
 
   //get challenges from database
   useEffect(() => {
@@ -103,9 +100,8 @@ const Backyard = ({ navigation, route }: Props) => {
 
   //get initial challenges
   useEffect(() => {
-    //TO DO: pass in user completed data
-    setSelectedOptions(getRandomChallenges(challengeData));
-  }, [challengeData]);
+    setSelectedOptions(getRandomChallenges(userChallengesAvailable));
+  }, [userChallengesAvailable]);
 
   return (
     <ContainerCenter>
@@ -129,6 +125,7 @@ const Backyard = ({ navigation, route }: Props) => {
                       challengeId: option.id,
                       challengeName: option.name,
                       challengeDescription: option.description,
+                      userId: userId,
                     });
                   }}
                   pressableColor={buttonColor}
@@ -139,7 +136,7 @@ const Backyard = ({ navigation, route }: Props) => {
               </View>
             );
           })}
-          {selectedOptions.length > 2 && (
+          {userChallengesAvailable.length > 2 && (
             <TextButton
               buttonText="Pick Again"
               onPress={() => {
