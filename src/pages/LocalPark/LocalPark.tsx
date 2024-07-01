@@ -129,6 +129,7 @@ const LocalPark = ({ navigation, route }: Props) => {
                       challengeId: option.id,
                       challengeName: option.name,
                       challengeDescription: option.description,
+                      userId: userId,
                     });
                   }}
                   pressableColor={buttonColor}
@@ -139,7 +140,7 @@ const LocalPark = ({ navigation, route }: Props) => {
               </View>
             );
           })}
-          {selectedOptions.length > 2 && (
+          {userChallengesAvailable.length > 2 && (
             <TextButton
               buttonText="Pick Again"
               onPress={() => {

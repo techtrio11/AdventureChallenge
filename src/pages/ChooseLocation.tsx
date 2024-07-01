@@ -41,22 +41,42 @@ const ChooseLocation = ({ navigation, route }: Props) => {
           />
           <SolidButton
             buttonText="Local Park"
-            onPress={() => navigation.navigate("LocalPark")}
+            onPress={() =>
+              navigation.navigate("LocalPark", {
+                userId: userId,
+                userName: userName,
+              })
+            }
             pressableColor={buttonStyles.solidYellowButton}
           />
           <SolidButton
             buttonText="Forest"
-            onPress={() => navigation.navigate("Forest")}
+            onPress={() =>
+              navigation.navigate("Forest", {
+                userId: userId,
+                userName: userName,
+              })
+            }
             pressableColor={buttonStyles.solidGreenButton}
           />
           <SolidButton
             buttonText="Water"
-            onPress={() => navigation.navigate("Water")}
+            onPress={() =>
+              navigation.navigate("Water", {
+                userId: userId,
+                userName: userName,
+              })
+            }
             pressableColor={buttonStyles.solidYellowButton}
           />
           <SolidButton
             buttonText="Learn"
-            onPress={() => navigation.navigate("Learn")}
+            onPress={() =>
+              navigation.navigate("Learn", {
+                userId: userId,
+                userName: userName,
+              })
+            }
             pressableColor={buttonStyles.solidBlueButton}
           />
         </View>
