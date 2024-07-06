@@ -79,6 +79,16 @@ const ChooseLocation = ({ navigation, route }: Props) => {
             }
             pressableColor={buttonStyles.solidBlueButton}
           />
+          <SolidButton
+            buttonText="Social"
+            onPress={() =>
+              navigation.navigate("Social", {
+                userId: userId,
+                userName: userName,
+              })
+            }
+            pressableColor={buttonStyles.solidBlueButton}
+          />
         </View>
       </>
     </ContainerCenter>
