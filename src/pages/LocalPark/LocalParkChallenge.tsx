@@ -4,7 +4,8 @@ import { buttonStyles, globalStyles } from "../../styles";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../../FirebaseConfig";
+import { db, storage } from "../../../FirebaseConfig";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 type Props = {
   navigation: any;
@@ -12,7 +13,8 @@ type Props = {
 };
 
 const LocalParkChallenge = ({ navigation, route }: Props) => {
-  const { challengeId, challengeName, challengeDescription } = route.params;
+  const { challengeId, challengeName, challengeDescription, userId } =
+    route.params;
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
@@ -27,12 +29,26 @@ const LocalParkChallenge = ({ navigation, route }: Props) => {
       setImage(result.assets[0]);
     }
   };
-  const uploadImage = async () => {
+  const handleSubmit = async () => {
     const storageRef = ref(storage, image.fileName);
+    const userRef = doc(db, "Users", userId);
     const img = await fetch(image);
     const bytes = await img.blob();
     uploadBytes(storageRef, bytes).then(() => {
-      setImage(null);
+      updateDoc(userRef, {
+        activities_completed: arrayUnion({
+          activity_id: challengeId,
+          date_completed: new Date(),
+          image_name: image.fileName,
+        }),
+      })
+        .then(() => {
+          setImage(null);
+          navigation.navigate("Social", {
+            userId: userId,
+          });
+        })
+        .catch((e) => console.log(e));
     });
   };
 
@@ -52,7 +68,7 @@ const LocalParkChallenge = ({ navigation, route }: Props) => {
         )}
         <SolidButton
           buttonText="Complete Challenge"
-          onPress={uploadImage}
+          onPress={handleSubmit}
           pressableColor={buttonStyles.solidGreenButton}
         />
       </>

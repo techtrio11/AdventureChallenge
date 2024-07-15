@@ -4,11 +4,7 @@ import { challengesReference, usersReference } from "../../../FirebaseConfig";
 import { useEffect, useState } from "react";
 import { ChallengesData } from "../../types";
 import { query, onSnapshot, where } from "firebase/firestore";
-import {
-  getFilteredChallengeData,
-  availableChallenges,
-  getRandomChallenges,
-} from "../../utils";
+import { getFilteredChallengeData, getRandomChallenges } from "../../utils";
 import { buttonStyles, globalStyles } from "../../styles";
 
 type Props = {
@@ -17,7 +13,7 @@ type Props = {
 };
 
 const Forest = ({ navigation, route }: Props) => {
-  const { userId } = route.params;
+  const { userId, userName } = route.params;
   const [userCompletedChallenges, setUserCompletedChallenges] = useState<
     ChallengesData[]
   >([]);
@@ -27,9 +23,6 @@ const Forest = ({ navigation, route }: Props) => {
   const [challengeData, setChallengesData] = useState<ChallengesData[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<ChallengesData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [availableChallengeData, setAvailableChallengesData] = useState<
-    ChallengesData[]
-  >([]);
 
   //get challenges from database
   useEffect(() => {
@@ -41,7 +34,7 @@ const Forest = ({ navigation, route }: Props) => {
 
       const unsubscribe = onSnapshot(challengesQuery, (querySnapshot) => {
         const list = [];
-        querySnapshot.forEach((doc) => {
+        querySnapshot.docs.map((doc) => {
           const data = doc.data();
           list.push({
             id: doc.id,
@@ -103,9 +96,8 @@ const Forest = ({ navigation, route }: Props) => {
 
   //get initial challenges
   useEffect(() => {
-    //TO DO: pass in user completed data
-    setSelectedOptions(getRandomChallenges(challengeData));
-  }, [challengeData]);
+    setSelectedOptions(getRandomChallenges(userChallengesAvailable));
+  }, [userChallengesAvailable]);
 
   return (
     <ContainerCenter>
@@ -130,6 +122,7 @@ const Forest = ({ navigation, route }: Props) => {
                       challengeName: option.name,
                       challengeDescription: option.description,
                       userId: userId,
+                      userName: userName,
                     });
                   }}
                   pressableColor={buttonColor}
