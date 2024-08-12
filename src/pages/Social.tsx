@@ -127,6 +127,7 @@ const Social = ({ navigation, route }: Props) => {
                   <Text style={globalStyles.title}>
                     User Name: {activity.name}
                   </Text>
+                  {/*{I would like to separate these onto separate lines */}
                   <Text style={globalStyles.title}>
                     Challenge Name: {activity.challengeName}
                   </Text>
