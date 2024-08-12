@@ -67,4 +67,8 @@ export const globalStyles = StyleSheet.create({
   title: {
     fontSize: 20,
   },
+  challenge: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
 });

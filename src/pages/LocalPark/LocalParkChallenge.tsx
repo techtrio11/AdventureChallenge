@@ -55,9 +55,9 @@ const LocalParkChallenge = ({ navigation, route }: Props) => {
   return (
     <ContainerCenter>
       <>
-        <Text>{challengeId}</Text>
-        <Text>{challengeName}</Text>
-        <Text>{challengeDescription}</Text>
+        {/*<Text>{challengeId}</Text>*/}
+        <Text style={globalStyles.challenge}>{challengeName}</Text>
+        <Text style={globalStyles.title}>{challengeDescription}</Text>
         <SolidButton
           buttonText="Pick an image from camera roll"
           onPress={pickImage}
