@@ -59,4 +59,12 @@ export const globalStyles = StyleSheet.create({
     width: 200,
     height: 200,
   },
+  streak: {
+    textDecorationLine: "underline",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+  title: {
+    fontSize: 20,
+  },
 });

@@ -119,13 +119,17 @@ const Social = ({ navigation, route }: Props) => {
       ) : (
         <>
           <Text>{userInfo.name}</Text>
-          <Text>Streak: {userInfo.streak}</Text>
+          <Text style={globalStyles.streak}>Streak: {userInfo.streak}</Text>
           <Text>
             {completedActivities.map((activity, index) => {
               return (
                 <View style={globalStyles.detailsContainer} key={index}>
-                  <Text>User Name: {activity.name}</Text>
-                  <Text>Challenge Name: {activity.challengeName}</Text>
+                  <Text style={globalStyles.title}>
+                    User Name: {activity.name}
+                  </Text>
+                  <Text style={globalStyles.title}>
+                    Challenge Name: {activity.challengeName}
+                  </Text>
                   {/* <Image
                     source={{ uri: activity.imageUrl }}
                     style={{ width: 50, height: 50 }}
