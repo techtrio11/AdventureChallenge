@@ -125,12 +125,13 @@ const Social = ({ navigation, route }: Props) => {
               return (
                 <View style={globalStyles.detailsContainer} key={index}>
                   <Text style={globalStyles.title}>
-                    User Name: {activity.name}
+                    User Name: {activity.name} {"\n"}Challenge Name:{" "}
+                    {activity.challengeName}
                   </Text>
-                  {/*{I would like to separate these onto separate lines */}
-                  <Text style={globalStyles.title}>
+                  {/*I would like to separate these onto separate lines */}
+                  {/*<Text style={globalStyles.title}>
                     Challenge Name: {activity.challengeName}
-                  </Text>
+                  </Text>*/}
                   {/* <Image
                     source={{ uri: activity.imageUrl }}
                     style={{ width: 50, height: 50 }}
