@@ -8,7 +8,7 @@ import {
   getFormattedQuizArray,
 } from "../../utils";
 import { QuizQuestion } from "../../types/learn";
-import { buttonStyles } from "../../styles";
+import { buttonStyles, globalStyles } from "../../styles";
 import { SolidButton } from "../../components";
 
 const Learn = () => {
@@ -92,7 +92,7 @@ B) Use a GPS location or mapping app`;
   };
 
   return (
-    <View>
+    <View style={globalStyles.containerCenter}>
       <ScrollView>
         <Text>{aiParagraph}</Text>
         <Text>
@@ -150,7 +150,7 @@ B) Use a GPS location or mapping app`;
             </div>
           ))}
         </Text>
-        <Text>
+        <Text style={globalStyles.incorrect}>
           {showPass && (pass ? "CORRECT!" : "Incorrect, please try again.")}
         </Text>
       </ScrollView>
