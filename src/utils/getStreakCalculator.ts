@@ -1,19 +1,17 @@
 export const getStreakCalculator = (dates) => {
-  const toDateOnly = (date) =>
-    new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
   const sortedDates = [
     ...new Set(dates.map((date) => toDateOnly(new Date(date)))),
   ].sort((a, b) => b - a);
 
+  const uniqueSortedDates = removeDuplicates(sortedDates);
   const today = toDateOnly(new Date());
   let streak = 0;
 
-  for (let i = 0; i < sortedDates.length; i++) {
+  for (let i = 0; i < uniqueSortedDates.length; i++) {
     const expectedDate = new Date(today);
     expectedDate.setDate(today.getDate() - i);
 
-    if (sortedDates[i].getTime() === expectedDate.getTime()) {
+    if (uniqueSortedDates[i].getTime() === expectedDate.getTime()) {
       streak++;
     } else {
       break;
@@ -22,3 +20,10 @@ export const getStreakCalculator = (dates) => {
 
   return streak;
 };
+
+const toDateOnly = (date) =>
+  new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+function removeDuplicates(array) {
+  return [...new Set(array)];
+}

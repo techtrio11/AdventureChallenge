@@ -89,13 +89,17 @@ const Social = ({ navigation, route }: Props) => {
                     challengeDetails.length > 0 ? challengeDetails[0].name : "",
                   photoName: activity.image_name,
                 };
-                const storageReference = ref(
-                  storage,
-                  `/${activityData.photoName}`
-                );
-                getDownloadURL(storageReference).then((img) => {
-                  activityData.imageUrl = img;
-                });
+                if (activityData.photoName !== "") {
+                  const storageReference = ref(
+                    storage,
+                    `/${activityData.photoName}`
+                  );
+                  getDownloadURL(storageReference).then((img) => {
+                    activityData.imageUrl = img;
+                  });
+                } else {
+                  activityData.imageUrl = "";
+                }
                 list.push(activityData);
               }
             });

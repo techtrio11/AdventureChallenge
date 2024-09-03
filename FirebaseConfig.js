@@ -14,5 +14,6 @@ export const firebaseConfig = {
 initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const challengesReference = collection(db, "Challenges");
+export const learnReferences = collection(db, "learn");
 export const usersReference = collection(db, "Users");
 export const storage = getStorage();
