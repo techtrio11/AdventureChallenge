@@ -11,7 +11,7 @@ import {
   UserData,
   blankUserData,
 } from "../types";
-import { formatDate, formatFirebaseDate } from "../utils";
+import { formatDate, formatFirebaseDate, getStreakCalculator } from "../utils";
 
 type Props = {
   navigation: any;
@@ -58,7 +58,7 @@ const Social = ({ navigation, route }: Props) => {
     };
   }, []);
 
-  //get data
+  //get user data
   useEffect(() => {
     if (challenges.length > 0) {
       const fetchActivityData = () => {
@@ -68,10 +68,16 @@ const Social = ({ navigation, route }: Props) => {
           const list = [];
           querySnapshot.forEach((doc) => {
             const data = doc.data();
+            const calculatedStreak = getStreakCalculator(
+              data.activities_completed.map((activity) =>
+                formatFirebaseDate(activity.date_completed)
+              )
+            );
             if (doc.id === userId) {
               user.name = data.name;
-              user.streak = data.streak;
+              user.streak = calculatedStreak;
             }
+
             data.activities_completed.map((activity) => {
               if (formatFirebaseDate(activity.date_completed) === formatToday) {
                 const challengeDetails = challenges.filter(
@@ -79,7 +85,6 @@ const Social = ({ navigation, route }: Props) => {
                 );
                 const activityData: ActivityCompletedData = {
                   name: data.name,
-                  streak: data.streak,
                   challengeName:
                     challengeDetails.length > 0 ? challengeDetails[0].name : "",
                   photoName: activity.image_name,

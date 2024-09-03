@@ -1,25 +1,24 @@
-export const getStreakCalculator = (datesArray) => {
-  if (datesArray.length === 0) return 0;
+export const getStreakCalculator = (dates) => {
+  const toDateOnly = (date) =>
+    new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-  // Convert string dates to Date objects and sort in descending order
-  const sortedDates = datesArray
-    .map((obj) => new Date(obj.date))
-    .sort((a, b) => b - a);
+  const sortedDates = [
+    ...new Set(dates.map((date) => toDateOnly(new Date(date)))),
+  ].sort((a, b) => b - a);
 
-  let maxStreak = 1;
-  let currentStreak = 1;
+  const today = toDateOnly(new Date());
+  let streak = 0;
 
-  for (let i = 1; i < sortedDates.length; i++) {
-    const diffInTime = sortedDates[i - 1] - sortedDates[i];
-    const diffInDays = diffInTime / (1000 * 3600 * 24);
+  for (let i = 0; i < sortedDates.length; i++) {
+    const expectedDate = new Date(today);
+    expectedDate.setDate(today.getDate() - i);
 
-    if (diffInDays === 1) {
-      currentStreak++;
-      maxStreak = Math.max(maxStreak, currentStreak);
+    if (sortedDates[i].getTime() === expectedDate.getTime()) {
+      streak++;
     } else {
-      currentStreak = 1;
+      break;
     }
   }
 
-  return maxStreak;
+  return streak;
 };
