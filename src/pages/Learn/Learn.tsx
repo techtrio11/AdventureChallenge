@@ -209,9 +209,13 @@ B) Use a GPS location or mapping app`;
                 </div>
               ))}
             </Text>
-            <Text style={globalStyles.incorrect}>
-              {showPass && (pass ? "CORRECT!" : "Incorrect, please try again.")}
-            </Text>
+            {showPass && (
+              <Text
+                style={pass ? globalStyles.correct : globalStyles.incorrect}
+              >
+                {pass ? "CORRECT!" : "Incorrect, please try again."}
+              </Text>
+            )}{" "}
           </ScrollView>
           <View>
             {pass ? (
