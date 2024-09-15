@@ -9,7 +9,7 @@ export const generateResponse = async (message) => {
       {
         model: "gpt-3.5-turbo-instruct",
         prompt: message,
-        max_tokens: 100,
+        max_tokens: 1000,
       },
       {
         headers: {

@@ -29,26 +29,24 @@ const Learn = ({ navigation, route }: Props) => {
   const { userId } = route.params;
   const [learnChallenge, setLearnChallenge] = useState<LearnData>(blankLearn);
   const [isLoading, setIsLoading] = useState(true);
-  // const [aiResponse, setAiResponse] = useState();
-  const [aiParagraph, setAiParagraph] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
   const [aiQuiz, setAiQuiz] = useState<QuizQuestion[]>([]);
   const [aiAnswers, setAiAnswers] = useState(["", "", ""]);
   const [selectedAnswers, setSelectedAnswers] = useState(["", "", ""]);
   const [showPass, setShowPass] = useState(false);
   const [pass, setPass] = useState(false);
 
-  //get challenges from database
+  //get all learn articles from database
   useEffect(() => {
     const fetchData = async () => {
       const learnQuery = query(learnReferences);
       const data = onSnapshot(learnQuery, (querySnapshot) => {
-        console.log("querySnapshot", querySnapshot);
         const list: LearnData[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           list.push({
             id: doc.id,
-            prompt: data.prompt,
+            article: data.article,
           });
         });
         const getRandomItemFromArray = (array) => {
@@ -56,7 +54,6 @@ const Learn = ({ navigation, route }: Props) => {
         };
         const learnChallenge = getRandomItemFromArray(list);
         setLearnChallenge(learnChallenge);
-        setIsLoading(false);
       });
       return data;
     };
@@ -64,57 +61,27 @@ const Learn = ({ navigation, route }: Props) => {
     return () => {};
   }, []);
 
-  // const sendMessage = async () => {
-  //   if (!learnChallenge.prompt) return;
-
-  //   const botResponse = await generateResponse(learnChallenge.prompt);
-  //   setAiResponse((prevMessages) => [
-  //     ...prevMessages,
-  //     `ChatGPT: ${botResponse}`,
-  //   ]);
-  // };
-  // console.log(aiResponse);
-
-  // useEffect(() => {
-  //   sendMessage();
-  // }, []);
-
-  const aiResponse = `Paragraph of things. 
-  
-  Multiple Choice Questions:
-
-1. What is the first priority when acting as a witness to a wildlife crime?
-
-A) Taking photos
-B) Ensuring your safety
-C) Reporting immediately
-D) Describing the suspect
-
-2. Which detail is NOT mentioned as important when reporting a wildlife crime?
-
-A) Vehicle description and license plate
-B) Exact location of the crime
-C) The type of clothing the suspect was wearing
-D) Photos or videos of the scene
-
-3. How can you provide the location of the wildlife crime to conservation officers?
-
-A) Describe the weather conditions
-B) Use a GPS location or mapping app
-C) Estimate the distance from the nearest town
-D) Provide the name of the nearest city
-
-Answers:
-
-B) Ensuring your safety
-C) The type of clothing the suspect was wearing
-B) Use a GPS location or mapping app`;
+  const sendMessage = async () => {
+    if (!learnChallenge.article) return;
+    const prompt =
+      "Based on the previous paragraph, write three multiple choice questions and the answer. Formatted like this: 1. yyy A. xxx B. xxx C. xxx D. xxx Answer: B. xxx";
+    await generateResponse(learnChallenge.article + " " + prompt).then(
+      (data) => {
+        setAiResponse(`${data}`);
+      }
+    );
+  };
 
   useEffect(() => {
-    setAiParagraph(getDescription(aiResponse));
-    setAiQuiz(getFormattedQuizArray(aiResponse));
-    setAiAnswers(getAnswerKey(aiResponse));
-    setIsLoading(false);
+    sendMessage();
+  }, [learnChallenge]);
+
+  useEffect(() => {
+    if (aiResponse !== "") {
+      setAiQuiz(getFormattedQuizArray(aiResponse));
+      setAiAnswers(getAnswerKey(aiResponse));
+      setIsLoading(false);
+    }
   }, [aiResponse]);
 
   // Handle change for radio buttons
@@ -127,6 +94,7 @@ B) Use a GPS location or mapping app`;
   };
 
   const checkAnswers = async () => {
+    console.log("aiAnswers, selectedAnswers", aiAnswers, selectedAnswers);
     setPass(arraysAreEqual(aiAnswers, selectedAnswers));
     setShowPass(true);
   };
@@ -153,7 +121,7 @@ B) Use a GPS location or mapping app`;
       ) : (
         <>
           <ScrollView>
-            <Text>{aiParagraph}</Text>
+            <Text>{learnChallenge.article}</Text>
             <Text>
               {aiQuiz.map((item, index) => (
                 <div key={index}>
@@ -203,7 +171,7 @@ B) Use a GPS location or mapping app`;
                         checked={selectedAnswers[index] === "D"}
                         onChange={() => handleAnswerChange(index, "D")}
                       />
-                      D) {item.optionD}
+                      D) {item.optionC}
                     </label>
                   </div>
                 </div>
