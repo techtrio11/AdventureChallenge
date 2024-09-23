@@ -58,7 +58,7 @@ const ForestChallenge = ({ navigation, route }: Props) => {
         <Text style={globalStyles.challenge}>{challengeName}</Text>
         <Text style={globalStyles.title}>{challengeDescription}</Text>
         <SolidButton
-          buttonText="Pick an image from camera roll"
+          buttonText="Choose from Camera Roll"
           onPress={pickImage}
           pressableColor={buttonStyles.solidYellowButton}
         />

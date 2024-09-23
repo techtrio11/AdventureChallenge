@@ -150,7 +150,7 @@ const Social = ({ navigation, route }: Props) => {
             })}
           </Text>
           <SolidButton
-            buttonText="Choose a new challenge"
+            buttonText="Home"
             onPress={() => {
               navigation.navigate("ChooseLocation", {
                 userId: userId,

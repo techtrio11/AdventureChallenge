@@ -56,6 +56,15 @@ const Home = ({ navigation }: Props) => {
               />
             );
           })}
+          <SolidButton
+            buttonText="New User"
+            pressableColor={buttonStyles.solidYellowButton}
+            onPress={() =>
+              navigation.navigate("Backyard", {
+                // VERY WRONG ONPRESS FUNCTION. Only added it to have a button on this screen for demo video
+              })
+            }
+          />
         </>
       )}
     </ContainerCenter>
